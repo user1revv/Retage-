@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Princess</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a001a, #4a0033);
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Floating Hearts Animation */
+        .heart-bg {
+            position: absolute;
+            color: rgba(255, 105, 180, 0.6);
+            font-size: 24px;
+            animation: floatUp 4s linear infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            width: 90%;
+            max-width: 650px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #ff80bf;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #fce4ec;
+            margin-bottom: 25px;
+            white-space: pre-line;
+        }
+
+        input[type="text"], input[type="password"] {
+            padding: 12px 20px;
+            font-size: 1rem;
+            border-radius: 25px;
+            border: 1px solid #ff80bf;
+            background: rgba(0, 0, 0, 0.3);
+            color: #fff;
+            width: 80%;
+            max-width: 300px;
+            margin-bottom: 20px;
+            text-align: center;
+            outline: none;
+        }
+
+        .options-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .option-btn {
+            background-color: rgba(255, 128, 191, 0.2);
+            color: #fff;
+            border: 2px solid #ff80bf;
+            padding: 10px 25px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .option-btn:hover {
+            background-color: #ff80bf;
+            color: #1a001a;
+        }
+
+        .btn {
+            background-color: #ff4d94;
+            color: #ffffff;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 77, 148, 0.4);
+        }
+
+        .btn:hover {
+            background-color: #ff1a75;
+            transform: scale(1.05);
+        }
+
+        .error-msg {
+            color: #ff6b6b;
+            font-size: 0.9rem;
+            margin-top: -15px;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        /* Page 8 Poems Styling */
+        .poem-box {
+            background: rgba(0, 0, 0, 0.4);
+            border-left: 4px solid #ff80bf;
+            padding: 15px;
+            margin-bottom: 15px;
+            text-align: right;
+            border-radius: 8px;
+        }
+
+        .poem-title {
+            color: #ff80bf;
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 1.2rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="container">
+
+        <!-- Page 1 -->
+        <div class="page active" id="page1">
+            <h2>Hello m little bunny 🐰💖</h2>
+            <p>Welcome to your special little world ✨</p>
+            <button class="btn" onclick="nextPage(2)">Click here to start</button>
+        </div>
+
+        <!-- Page 2 -->
+        <div class="page" id="page2">
+            <h2>for u m princess 👑💕</h2>
+            <p>For open ur world of words enter the required :</p>
+            <button class="btn" onclick="nextPage(3)">Next</button>
+        </div>
+
+        <!-- Page 3 -->
+        <div class="page" id="page3">
+            <h2>Question 1 🗓️</h2>
+            <p>What is the date of our date ?!</p>
+            <input type="text" id="dateInput" placeholder="...">
+            <div id="dateError" class="error-msg">Incorrect date, try again! 🥺</div>
+            <br>
+            <button class="btn" onclick="checkDate()">Next</button>
+        </div>
+
+        <!-- Page 4 -->
+        <div class="page" id="page4">
+            <h2>Question 2 ❤️</h2>
+            <p>Who loves the other more ?!</p>
+            <div class="options-container">
+                <button class="option-btn" onclick="wrongChoice()">me</button>
+                <button class="option-btn" onclick="nextPage(5)">you</button>
+            </div>
+            <div id="choiceError" class="error-msg">Nop! Try again baby 😉</div>
+        </div>
+
+        <!-- Page 5 -->
+        <div class="page" id="page5">
+            <h2>Welcome m princess 💖✨🌹</h2>
+            <button class="btn" onclick="nextPage(6)">Next</button>
+        </div>
+
+        <!-- Page 6 -->
+        <div class="page" id="page6">
+            <h2>My Message For You 💌</h2>
+            <p>First of all I want to tell u how much I love u how deeply I adore u nd how madly in love with u I am ❤️ 
+            
+            I also want to thank u for being in my life nd for staying by my side ehmmmm nd too m so incredibly proud of u babyyyyy w m soooo fucking lucky to have u 🥺✨🔥💕</p>
+            <button class="btn" onclick="nextPage(7)">Next</button>
+        </div>
+
+        <!-- Page 7 -->
+        <div class="page" id="page7">
+            <h2>Read This... 🌙</h2>
+            <p>Now u can read what was written for u while u were asleep I hope u like it nd that it appeals to ehmmmm ik u deserve the best but in any case please know that I have never done this with any girl before u nd that ur the first nd the last 🌹🔒✨</p>
+            <button class="btn" onclick="nextPage(8)">Next</button>
+        </div>
+
+        <!-- Page 8 -->
+        <div class="page" id="page8">
+            <h2>Your Special Poems 📜✨</h2>
+            
+            <div class="poem-box">
+                <div class="poem-title">اسمك لوحده هلاك فما بالك بعينيك 🌹</div>
+                <p>حروف اسمها باب لكل جمال<br>و في عينيها نور و سحر بغير مثال<br>جمعت بين نور الكون و البهاء<br>فأصبحت فجرا يضيئ ظلمة السماء<br>فمن هي ملاكي و سر الهناء ؟<br>و من سكنت روحي حتى الفناء ؟<br>ريتاج ... اسمك في الفؤاد هلاك<br>فكيف لقلبي ان يمل هواك ؟<br>و كيف للروح ان تحيا بعيدا عن ضياك ؟<br><br>ان لعيناك لونا كالسماء<br>تتجلى فيهما الطهر و أسرار الصفاء<br>غرقت في عشقهما حتى ..<br>صار الغرق للروح شفاء<br><br>اني غدوت عاشقة صماء<br>تسير بنورك دون انطفاء</p>
+            </div>
+
+            <div class="poem-box">
+                <div class="poem-title">ملادي و دياري 🫶</div>
+                <p>يا من أهديتك روحي و عمري و صبري و وفائي...<br>أنت الحياة و أنت النور في سماي<br>أتيتك مبعثرة الأفكار ، هاربة من سواد الأقدار...<br>لأجد في قلبك ملادي ، و في عينيك سكني و دياري..<br>يا من لممت شتاتي و أعدت فؤادي...<br>و أصبحت أنس حياتي و منتهى أحزاني<br>إني لك عاشقة... إلى آخر أيامي .<br>و أقسم برب العزة...<br>لو أني خائنة لعهدك ، أو ناضرة لغيرك...<br>فأسيلي دمائي ، و إفعلي بي ما تشائي..<br>إني أهديتك روحي في سبيل وفائي ....<br>"يا من أفني في حنايا دنياك"</p>
+            </div>
+
+            <div class="poem-box">
+                <div class="poem-title">ما كان غيرك 🌹</div>
+                <p>يا من أبتليتني بعشقك ، و سقيتني بعدب حنانك<br>و ضممْتني بدفء عطفك ..كيف لقلبي أن يحيى بعدك ؟<br>إني جهلت نفسي مند هويتك...<br>و ما سطرت حرفا لأحد قبلك .<br>تهامس الجميع من مدى حبي لك<br>و أنت... لازلت تستهينين بقلب... صار يعبق بك<br>فما نطقت بالعشق لأنثى سواك<br>ولا إتخدت وطنا في هدا العالم سوى قلبك...<br>فكوني كما شئت ، إني قد حسمت أمري ..<br>إما الحياة بك أو لا حياة بعدك<br>فقدري أن أحبك و مصيري أن أبقى لك .<br>(أو أفنى بدونك....)</p>
+            </div>
+
+            <div class="poem-box">
+                <div class="poem-title">طيف بعيد 💫</div>
+                <p>تغيبيين فجأة فيضلَم العمر<br>و يغدو العيش في بعدك جمر<br>ان غيابك للروح شديد ..و شوقي إليك بات يزيد<br>إني مشتاقة و الوصال بعيد ...<br>فهلا زرتني في منامي..ليبرأ قلبي الشهيد<br>و تططفئ شوقي ألدي بات بالبعد يزيد ...<br>يا من بك الروح تستغيت ...و ما لي بغيرك عيش رغيد<br>اني لك العبد الذي حن صدره<br>و بات بشوق إليك يزيد....</p>
+            </div>
+
+            <div class="poem-box">
+                <div class="poem-title">أسير ضيائها ✨</div>
+                <p>تهت في ظلامي ليلة ...فاغمضت عيني للحضة<br>فإذا بي اري نجمة...اضاءت مساري بسرعة<br>و بددت عني السواد...فمشيت خلف ضيائها<br>فإذا بي تهت في جمال بهائها...<br>ف بربك كيف لمثلها..<br>ان تكون إنساناا بدل ملاكا في سمائها ؟<br>لو كنت عبدا لاصبحت اسيرها<br>و لو كنت شيطانا لتبعت نورها<br>و لو كنت جنا لسكنت ديارها ....<br>فبرب العالمين اقسم صادقا<br>اني غدوت مفتونا بحبها</p>
+            </div>
+
+            <div class="poem-box">
+                <div class="poem-title">هائم في هواك 🌪️</div>
+                <p>يا من قلبي يهواك و ليس لي سواك<br>ابحرت في طريق الحب شوقا<br>فوجدت نفسي هائما في هواك<br>و اصبحت عاشقا لعينيك<br>فبربك... كيف لي ان اخطا لك ؟<br>اني اويش كل يوم خوف فقدانك<br>فكيف لقلبي ان يححب غيرك....</p>
+            </div>
+
+            <p style="margin-top: 20px; color: #ff80bf; font-weight: bold;">I love you forever ❤️</p>
+        </div>
+
+    </div>
+
+    <script>
+        // Create floating background hearts
+        function createHearts() {
+            const container = document.body;
+            const heart = document.createElement('div');
+            heart.classList.add('heart-bg');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            container.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
+        }
+        setInterval(createHearts, 300);
+
+        // Navigation between pages
+        function nextPage(pageNumber) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('page' + pageNumber).classList.add('active');
+            document.getElementById('container').scrollTop = 0;
+        }
+
+        // Check Date Question (0110)
+        function checkDate() {
+            const val = document.getElementById('dateInput').value.trim();
+            if (val === '0110') {
+                document.getElementById('dateError').style.display = 'none';
+                nextPage(4);
+            } else {
+                document.getElementById('dateError').style.display = 'block';
+            }
+        }
+
+        // Wrong choice handler for Page 4
+        function wrongChoice() {
+            document.getElementById('choiceError').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
