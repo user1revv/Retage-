@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For my princess Retage</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tahoma', sans-serif;
+        }
+        body {
+            background: #121214;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+            padding: 20px 0;
+        }
+        .container {
+            background: rgba(30, 30, 35, 0.85);
+            padding: 35px 25px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            width: 90%;
+            max-width: 450px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .icons {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+        h1 {
+            color: #ff9fb3;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        p {
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 15px;
+            color: #e0e0e0;
+        }
+        input[type="password"] {
+            width: 100%;
+            padding: 14px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 2px solid #ff7b96;
+            border-radius: 30px;
+            outline: none;
+            text-align: center;
+            font-size: 15px;
+            color: white;
+            margin-bottom: 20px;
+        }
+        input::placeholder {
+            color: #aaa;
+        }
+        button {
+            background: linear-gradient(135deg, #ff7b96 0%, #ff4b72 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.3s;
+            width: 100%;
+            box-shadow: 0 5px 15px rgba(255, 75, 114, 0.4);
+            margin-top: 8px;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+        .hidden {
+            display: none;
+        }
+        .poem-card {
+            background: rgba(255, 123, 150, 0.08);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+            border-left: 4px solid #ff7b96;
+            text-align: right;
+            direction: rtl;
+        }
+        .poem-title {
+            color: #ff9fb3;
+            font-size: 17px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .poem-text {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #f1f1f1;
+            white-space: pre-line;
+        }
+        #content-screen {
+            max-height: 500px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+        #content-screen::-webkit-scrollbar {
+            width: 5px;
+        }
+        #content-screen::-webkit-scrollbar-thumb {
+            background: #ff7b96;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- الصفحة الأولى: تاريخ اللقاء -->
+        <div id="step-1">
+            <div class="icons">👑 🤍</div>
+            <h1>For my princess Retage</h1>
+            <p>For open ur world of words princess enter the required :<br><strong>The date of our date?</strong></p>
+            <input type="password" id="passcode-1" placeholder="Enter date...">
+            <button onclick="checkStep1()">Next 🤍</button>
+            <p id="error-msg-1" style="color: #ff4b72; font-size: 13px; margin-top: 12px;"></p>
+        </div>
+
+        <!-- الصفحة الثانية: سؤال Who loves the other more? -->
+        <div id="step-2" class="hidden">
+            <div class="icons">👑 🤍</div>
+            <h1>For my princess Retage</h1>
+            <p>Choose the correct answer :<br><strong>Who loves the other more?</strong></p>
+            <button onclick="checkStep2('Me')">Me</button>
+            <button onclick="checkStep2('You')">You</button>
+            <button onclick="checkStep2('Both')">Both</button>
+            <p id="error-msg-2" style="color: #ff4b72; font-size: 13px; margin-top: 12px;"></p>
+        </div>
+
+        <!-- الصفحة الثالثة: الرسالة اللطيفة مع زر Click here / Next -->
+        <div id="step-3" class="hidden">
+            <div class="icons">✨ 🤍</div>
+            <h1>Welcome my bunny</h1>
+            <p>
+                u've passed those questions nd now u can read everything I wrote to u while u were sleeping but before that I want to tell u how much i love and adore u nd also how proud I'm of u nd grateful for ur presence in m life m really so lucky to have u
+            </p>
+            <button onclick="showFinalContent()">Click here / Next 🤍</button>
+        </div>
+
+        <!-- الصفحة الرابعة (الكادو النهائي: القصائد كاملة) -->
+        <div id="content-screen" class="hidden">
+            <h1>Your Special Gift ✨</h1>
+
+            <!-- القصيدة الأولى -->
+            <div class="poem-card">
+                <div class="poem-title">اسمك لوحده هلاك فما بالك بعينيك 🌹</div>
+                <div class="poem-text">حروف اسمها باب لكل جمال
+و في عينيها نور و سحر بغير مثال
+جمعت بين نور الكون و البهاء
+فأصبحت فجرا يضيئ ظلمة السماء
+فمن هي ملاكي و سر الهناء ؟
+و من سكنت روحي حتى الفناء ؟
+ريتااج ... اسمك في الفؤاد هلاك
+فكيف لقلبي ان يمل هواك ؟
+و كيف للروح ان تحيا بعيدا عن ضياك ؟
+
+ان لعينيك لونا كالسماء
+تتجلى فيهما الطهر و أسرار الصفاء
+غرقت في عشقهما حتى ..
+صار الغرق للروح شفاء
+
+اني غدوت عاشقة صماء
+تسير بنورك دون انطفاء</div>
+            </div>
+
+            <!-- القصيدة الثانية -->
+            <div class="poem-card">
+                <div class="poem-title">طيف بعيد 💫</div>
+                <div class="poem-text">تغيبيَن فجأة فيضلَم العمر
+و يغدو العيش في بعدك جمر
+ان غيابك للروح شديد ..و شوقي إليك بات يزيد
+إني مشتاقة و الوصال بعيد ...
+فهلا زرتني في منامي..ليبرأ قلبي الشهيد
+و تطفئي شوقي أّلذي بات بالبعد يزيد ...
+يا من بك الروح تستغيث ...و ما لي بغيرك عيش رغيد
+اني لك العبد الذي حن صدره
+و بات بشوق إليك يزيد....</div>
+            </div>
+
+            <!-- القصيدة الثالثة -->
+            <div class="poem-card">
+                <div class="poem-title">أسير ضيائها ✨</div>
+                <div class="poem-text">تهت في ضلامي ليلة ...فاغمضت عيني للحضة
+فإذا بي اري نجمة...اضاءت مساري بسرعة
+و بددت عني السواد...فمشيت خلف ضياها
+فإذا بي تهت في جمال بهائها...
+ف بربك كيف لمثلها..
+ان تكون إنساناا بدل ملاكا في سمائها ؟
+لو كنت عبدا لاصبحت اسيرها
+و لو كنت شيطانا لتبعت نورها
+و لو كنت جنا لسكنت ديارها ....
+فبرب العالمين اقسم صادقا
+اني غدوت مفتونا بحبها</div>
+            </div>
+
+            <!-- القصيدة الرابعة -->
+            <div class="poem-card">
+                <div class="poem-title">ملادي و دياري 🫶</div>
+                <div class="poem-text">يا من أهديتك روحي و عمري و صبري و وفائي...
+أنت الحياة و أنت النور في سماي
+أتيتك مبعثرة الأفكار ، هاربة من سواد الأقدار...
+لأجد في قلبك ملادي ، و في عينيك سكني و دياري..
+يا من لممت شتاتي و أعدت فؤادي...
+و أصبحت أنس حياتي و منتهى أحزاني
+إني لك عاشقة...إلى آخر أيامي .
+و أقسم برب العزة...
+لو أني خائنة لعهدك ، أو ناضرة لغيرك...
+فأسيلي دمائي ، و افعلي بي ما تشائي..
+إني أهديتك روحي في سبيل وفائي ....
+"يا من أفنى في حنايا دنياك"</div>
+            </div>
+
+            <!-- القصيدة الخامسة -->
+            <div class="poem-card">
+                <div class="poem-title">ما كان غيرك 🌹</div>
+                <div class="poem-text">يا من أبليتني بعشقك ، و سقيتني بعدب حنانك
+و ضممْتني بدفء عطفك ..كيف لقلبي أن يحيى بعدك ؟
+إني جهلت نفسي مند هويتك...
+و ما سطرت حرفا لأحد قبلك .
+تهامس الجميع من مدى حبي لك
+و أنت... لازلت تستهينين بقلب... صار يعبق بك
+فما نطقت بالعشق لأنثى سواك
+ولا إتخدت وطنا في هدا العالم سوى قلبك...
+فكوني كما شئت ، إني قد حسمت أمري ..
+إما الحياة بك أو لا حياة بعدك
+فقدرري أن أحبك و مصيري أن أبقى لك .
+(أو أفنى بدونك....)</div>
+            </div>
+
+            <!-- القصيدة السادسة -->
+            <div class="poem-card">
+                <div class="poem-title">هائم في هواك 🌪️</div>
+                <div class="poem-text">يا من قلبي يهواك و ليس لي سواك
+ابحرت في طريق الحب شوقا
+فوجدت نفسي هائما في هواك
+و اصبحت عاشقا لعينيك
+فبربك... كيف لي ان اخطااك ؟
+اني اعيش كل يوم خوف فقدانك
+فكيف لقلبي ان يحب غيرك....</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function checkStep1() {
+            const pass = document.getElementById('passcode-1').value;
+            if (pass === "0110" || pass === "01/10") {
+                document.getElementById('step-1').classList.add('hidden');
+                document.getElementById('step-2').classList.remove('hidden');
+            } else {
+                document.getElementById('error-msg-1').innerText = "Incorrect date, try again ❤️";
+            }
+        }
+
+        function checkStep2(choice) {
+            if (choice === 'You' || choice === 'Both') {
+                document.getElementById('step-2').classList.add('hidden');
+                document.getElementById('step-3').classList.remove('hidden');
+            } else {
+                document.getElementById('error-msg-2').innerText = "Try again my love ❤️";
+            }
+        }
+
+        function showFinalContent() {
+            document.getElementById('step-3').classList.add('hidden');
+            document.getElementById('content-screen').classList.remove('hidden');
+        }
+    </script>
+
+</body>
+</html>
